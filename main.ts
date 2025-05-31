@@ -1,9 +1,7 @@
 namespace SpriteKind {
     export const FLOWER = SpriteKind.create()
 }
-/**
- * 碰到旗竿
- */
+
 // 按鈕 up 跳躍事件
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (到達目標 == true) {
@@ -414,6 +412,7 @@ game.onUpdate(function () {
 })
 // 主 update 只保留流程控制邏輯
 game.onUpdate(function () {
+
     if (controller.left.isPressed()) {
         小鴨方向 = "left"
     } else if (controller.right.isPressed()) {
