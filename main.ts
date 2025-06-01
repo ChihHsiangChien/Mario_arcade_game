@@ -4,7 +4,7 @@ namespace SpriteKind {
 
 // 按鈕 up 跳躍事件
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (到達目標 == true) {
+    if (控制權 !== "玩家") {
         return
     }
     if (小鴨.isHittingTile(CollisionDirection.Bottom)) {
@@ -34,18 +34,6 @@ function 產生火球花 (tile: tiles.Location) {
     tiles.placeOnTile(flower, tile)
     flower.y -= 20
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
-    if (到達目標 == true) {
-        return
-    }
-    到達目標 = true
-    // 停止玩家控制
-    controller.moveSprite(小鴨, 0, 0)
-    tiles.placeOnTile(小鴨, location)
-    sprite.vx = 0
-    sprite.vy = 50
-    自動前進中 = true
-})
 function 產生敵人 (tile: tiles.Location) {
     敵人 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -70,7 +58,7 @@ function 產生敵人 (tile: tiles.Location) {
 }
 // 按A發射火球
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (到達目標 == true) {
+    if (控制權 !== "玩家") {
         return
     }
     發射火球()
@@ -85,7 +73,7 @@ function 吃到花 () {
     }
 }
 function 更新靜止圖像 () {
-    if (到達目標 == true) {
+    if (控制權 !== "玩家" ) {
         return
     }
     if (小鴨方向 == "left") {
@@ -361,14 +349,7 @@ tiles.setCurrentTilemap(tilemap`layer1`)
 tiles.placeOnTile(小鴨, tiles.getTileLocation(0, 12))
 scene.cameraFollowSprite(小鴨)
 小鴨.ay = 500
-game.onUpdate(function () {
-    if (自動前進中 && 小鴨.isHittingTile(CollisionDirection.Bottom)) {
-        小鴨.vy = 0
-        小鴨.vx = 20
-        // 只做一次
-        自動前進中 = false
-    }
-})
+
 // 檢查所有火球
 game.onUpdate(function () {
     if (sprites.allOfKind(SpriteKind.Projectile).length != 0) {
@@ -410,25 +391,7 @@ game.onUpdate(function () {
         }
     }
 })
-// 主 update 只保留流程控制邏輯
-game.onUpdate(function () {
 
-    if (controller.left.isPressed()) {
-        小鴨方向 = "left"
-    } else if (controller.right.isPressed()) {
-        小鴨方向 = "right"
-    }
-    if (controller.left.isPressed() || controller.right.isPressed()) {
-        if (!(正在移動)) {
-            正在移動 = true
-            播放移動動畫()
-        }
-    } else {
-        animation.stopAnimation(animation.AnimationTypes.All, 小鴨)
-        正在移動 = false
-        更新靜止圖像()
-    }
-})
 // 設定所有敵人的撞牆邏輯
 game.onUpdate(function () {
     if (sprites.allOfKind(SpriteKind.Enemy).length != 0) {
@@ -442,13 +405,130 @@ game.onUpdate(function () {
         }
     }
 })
+
+
+
+// 主 update 只保留流程控制邏輯
 game.onUpdate(function () {
+    if (控制權  !== "玩家") {return}
+
+    if (controller.left.isPressed()) {
+        小鴨方向 = "left"
+    } else if (controller.right.isPressed()) {
+        小鴨方向 = "right"
+    }
+    if (controller.left.isPressed() || controller.right.isPressed()) {
+        //控制每次動畫都播完 而不是每次都從第1 frame
+        if (!(正在移動)) {
+            正在移動 = true
+            播放移動動畫()
+        }
+    } else {
+        animation.stopAnimation(animation.AnimationTypes.All, 小鴨)
+        正在移動 = false
+        更新靜止圖像()
+    }
+})
+
+//速度控制
+game.onUpdate(function () {
+
+    if (控制權 === "玩家") {
+        let speed = 正常速度
+        if (controller.B.isPressed()) {
+            speed = 加速速度
+        }
+        controller.moveSprite(小鴨, speed, 0)
+    } else {
+        // 系統控制時，玩家無法控制角色
+        controller.moveSprite(小鴨, 0, 0)
+    }
+})
+
+// 狀態變數
+let 控制權 = "玩家"       // "玩家" / "系統"
+let 行為狀態 = "靜止"     // "靜止" / "移動" / "滑落旗桿" / "自動前進"
+
+game.onUpdate(function () {
+    if (控制權 === "玩家") {
+        // 玩家控制流程
+        if (controller.left.isPressed()) {
+            小鴨方向 = "left"
+            行為狀態 = "移動"
+        } else if (controller.right.isPressed()) {
+            小鴨方向 = "right"
+            行為狀態 = "移動"
+        } else {
+            行為狀態 = "靜止"
+        }
+
+        if (行為狀態 === "移動" && !正在移動) {
+            正在移動 = true
+            播放移動動畫()
+        } else if (行為狀態 === "靜止" && 正在移動) {
+            animation.stopAnimation(animation.AnimationTypes.All, 小鴨)
+            正在移動 = false
+            更新靜止圖像()
+        }
+
+        let speed = 正常速度
+        if (controller.B.isPressed()) {
+            speed = 加速速度
+        }
+        controller.moveSprite(小鴨, speed, 0)
+    } else if (控制權 === "系統") {
+        // 系統自動流程
+        if (行為狀態 === "滑落旗桿") {
+            // 鴨子自動滑落旗桿的邏輯
+            if (!小鴨.isHittingTile(CollisionDirection.Bottom)) {
+                小鴨.vx = 0
+                小鴨.vy = 50 // 往下滑落
+            } else {
+                小鴨.vy = 0
+                行為狀態 = "自動前進"
+            }
+        } else if (行為狀態 === "自動前進") {
+            小鴨.vx = 20
+            小鴨.vy = 0
+            // 這邊可以加判斷，走到某點改回玩家控制
+        }
+    }
+})
+
+// 碰到旗竿時切換狀態
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    if (控制權 === "系統") return // 已經系統控制中，跳過
+
+    控制權 = "系統"
+    行為狀態 = "滑落旗桿"
+    controller.moveSprite(小鴨, 0, 0) // 停止玩家控制
+    tiles.placeOnTile(小鴨, location)
+    小鴨.vx = 0
+    小鴨.vy = 50
+})
+
+
+/*
+//碰到旗竿
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     if (到達目標 == true) {
         return
     }
-    speed = 正常速度
-    if (controller.B.isPressed()) {
-        speed = 加速速度
-    }
-    controller.moveSprite(小鴨, speed, 0)
+    到達目標 = true
+    // 停止玩家控制
+    controller.moveSprite(小鴨, 0, 0)
+    tiles.placeOnTile(小鴨, location)
+    sprite.vx = 0
+    sprite.vy = 50
+    自動前進中 = true
 })
+
+game.onUpdate(function () {
+    if (自動前進中 && 小鴨.isHittingTile(CollisionDirection.Bottom)) {
+        小鴨.vy = 0
+        小鴨.vx = 20
+        // 只做一次
+        自動前進中 = false
+    }
+})
+*/
