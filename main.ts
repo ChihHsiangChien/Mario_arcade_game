@@ -58,8 +58,8 @@ function 初始化遊戲 () {
     tiles.placeOnTile(小方, tiles.getTileLocation(0, 12))
     scene.cameraFollowSprite(小方)
     小方.ay = 500
-    for (let index = 0; index < 0; index++) {
-        產生敵人(tiles.getTileLocation(randint(5, 15), 8))
+    for (let index = 0; index < 10; index++) {
+        產生敵人(tiles.getTileLocation(randint(10, 15), 8))
     }
 }
 // 產生火球花
@@ -327,7 +327,7 @@ game.onUpdate(function () {
             music.baDing.play()
             產生火球花(tile)
         } else if (tiles.tileAtLocationEquals(tile, sprites.builtin.brick)) {
-            小方.vy = -50
+            小方.vy = -30
             tiles.setWallAt(tile, false)
             tiles.setTileAt(tile, assets.tile`transparency16`)
             music.baDing.play()
