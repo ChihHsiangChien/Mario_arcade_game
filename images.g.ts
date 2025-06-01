@@ -137,13 +137,70 @@ d77777777777777777777dddddddddddd77777dddddddddddddddd99999999999ddddddddddddddd
 . . 2 5 5 5 5 5 5 5 5 2 . . . 
 . . . 2 2 2 2 2 2 2 2 . . . . 
 `;
+            case "image1":
+            case "duckSmallRight":return img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. . . . b b 5 d 1 f 5 5 d f . . 
+. . . . b 5 5 1 f f 5 d 4 c . . 
+. . . . b 5 5 d f b d d 4 4 . . 
+. b b b d 5 5 5 5 5 4 4 4 4 4 b 
+b d d d b b d 5 5 4 4 4 4 4 b . 
+b b d 5 5 5 b 5 5 5 5 5 5 b . . 
+c d c 5 5 5 5 d 5 5 5 5 5 5 b . 
+c b d c d 5 5 b 5 5 5 5 5 5 b . 
+. c d d c c b d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image2":
+            case "duckBigRight":return img`
+. . . . . . b b b b b b b . . . 
+. . . . . b 5 5 5 5 5 5 5 b . . 
+. . . . b 5 d 1 f 5 5 5 5 5 b . 
+. . . b 5 5 1 f f 5 d d 4 4 b . 
+. . b 5 5 d f b d d d 4 4 4 4 b 
+. b 5 5 5 5 5 4 4 4 4 4 4 4 4 b 
+. b d d d d d 4 4 4 4 4 4 4 4 b 
+b 5 5 5 5 5 5 5 5 5 5 5 5 5 5 b 
+b 5 5 5 5 5 5 5 5 5 5 5 5 5 5 b 
+b 5 5 5 5 5 5 5 5 5 5 5 5 5 5 b 
+b b b b b b b b b b b b b b b b 
+. b b b b b b b b b b b b b b . 
+. . b b b b b b b b b b b b . . 
+. . . b b b b b b b b b b . . . 
+. . . . b b b b b b b b . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image3":
+            case "duckFireRight":return img`
+. . . . 2 2 2 2 2 2 2 2 2 2 2 . 
+. . . 2 2 2 5 5 5 5 5 5 2 2 2 2 
+. . 2 2 2 2 d 1 f 5 5 5 5 5 2 2 
+. 2 2 2 2 5 1 f f 5 d d 4 4 b 2 
+2 2 2 2 5 d f b d d d 4 4 4 4 2 
+2 2 2 5 5 5 5 4 4 4 4 4 4 4 4 2 
+2 2 d d d d d 4 4 4 4 4 4 4 4 2 
+2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 2 
+2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 2 
+2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 2 
+2 b b b b b b b b b b b b b b 2 
+2 2 b b b b b b b b b b b b b 2 
+2 2 2 b b b b b b b b b b b 2 2 
+. 2 2 2 b b b b b b b b b 2 2 2 
+. 2 2 2 2 2 b b b b b b 2 2 2 2 
+. . 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+`;
         }
         return null;
     })
 
     helpers._registerFactory("animation", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "duckLeft":
+            case "smallLeftAnimation":
             case "anim2":return [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -247,7 +304,7 @@ b 4 4 4 4 4 5 5 5 5 5 d b b b .
 . . . b b c c c c c c c c . . . 
 . . . . . . . . . . . . . . . . 
 `];
-            case "duckRight":
+            case "smallRightAnimation":
             case "anim1":return [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -333,6 +390,422 @@ c b 5 5 b c d d 5 5 5 5 5 5 b .
 b b c c c d d d 5 5 5 5 5 d b . 
 . . . . c c d d d 5 5 5 b b . . 
 . . . . . . c c c c c b b . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. . . . b b 5 d 1 f 5 5 d f . . 
+. . . . b 5 5 1 f f 5 d 4 c . . 
+. . . . b 5 5 d f b d d 4 4 . . 
+. b b b d 5 5 5 5 5 4 4 4 4 4 b 
+b d d d b b d 5 5 4 4 4 4 4 b . 
+b b d 5 5 5 b 5 5 5 5 5 5 b . . 
+c d c 5 5 5 5 d 5 5 5 5 5 5 b . 
+c b d c d 5 5 b 5 5 5 5 5 5 b . 
+. c d d c c b d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "bigRightAnimation":
+            case "anim3":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . b b b b b 5 5 b . . . 
+. . . b b b 5 5 5 5 b b . . . . 
+. . b b 5 5 5 5 5 5 5 5 b . . . 
+. b b 5 5 5 5 5 5 5 5 5 5 b . . 
+b b d 5 5 5 5 5 5 5 5 5 5 b . . 
+b d d 5 5 b 5 d 1 f 5 d 4 f . . 
+b d d d 5 5 b 1 f f 5 4 4 c . . 
+b d d b 5 5 5 d f b 4 4 4 4 b . 
+b d d c d 5 5 b 5 4 4 4 4 4 4 b 
+c d d d c c b 5 5 5 5 5 5 5 b . 
+c b d d d d d 5 5 5 5 5 5 5 b . 
+. c d d d d d d 5 5 5 5 5 5 b . 
+. . c b d d d d d 5 5 5 5 b . . 
+. . . c c c c c c c c b b . . . 
+`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . b 5 b . . . 
+. . . b b b b b b b 5 b . . . . 
+. b b b b b b 5 5 5 b b . . . . 
+b b b 5 5 5 5 5 5 5 5 5 b . . . 
+b b b 5 5 5 5 5 5 5 5 5 5 b . . 
+b b 5 5 5 5 5 5 5 5 5 5 5 b . . 
+b 5 5 5 5 b 5 d 1 f 5 d 4 f . . 
+b 5 5 5 5 5 b 1 f f 5 4 4 c . . 
+b 5 5 5 5 5 5 d f b 4 4 4 4 4 b 
+b 5 d c d 5 5 b 5 4 4 4 4 4 b . 
+c d d d c c b 5 5 5 5 5 5 5 b . 
+c b d d d d d 5 5 5 5 5 5 5 b . 
+. c d d d d d d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b c . . . . . 
+. b b b b b b b 5 5 b b . . . . 
+b b 5 5 5 5 5 5 5 5 5 5 b . . . 
+b 5 5 5 5 5 5 d 1 f 5 5 d f . . 
+b 5 5 5 5 5 5 1 f f 5 d 4 c . . 
+5 5 5 5 5 5 5 d f b d d 4 4 . . 
+b 5 5 5 5 5 d 5 5 5 4 4 4 4 4 b 
+b 5 5 5 5 5 b 5 5 4 4 4 4 4 b . 
+b 5 5 5 5 5 5 d 5 5 5 5 5 b . . 
+c d 5 5 d 5 5 b 5 5 5 5 5 5 b . 
+c b d 5 5 5 5 5 5 5 5 5 5 5 b . 
+. c d d d d d d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . c c b b b b b b . . . . 
+. . . c 5 5 5 5 5 5 5 5 b . . . 
+. . c c 5 5 5 d 1 f 5 d 4 c . . 
+. c c 5 5 5 5 1 f f d d 4 4 4 b 
+. c 5 5 5 5 5 d f b 4 4 4 4 b . 
+c c 5 5 5 5 5 5 5 4 4 4 4 b . . 
+c 5 5 5 5 5 5 5 5 5 5 5 5 b . . 
+c 5 5 5 5 5 5 5 5 5 5 5 5 5 b . 
+c d d d 5 5 5 5 5 5 5 5 5 5 b . 
+c d d b d d d d 5 5 5 5 5 5 b . 
+c d b d d 5 d d d 5 5 5 5 5 b . 
+. b d d d d d d 5 5 5 5 5 d b . 
+b b c d c d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . b b b b b b b b b . . . . 
+. b b b 5 5 5 5 5 5 5 5 b . . . 
+. b b 5 5 5 5 d 1 f 5 d 4 c . . 
+b b 5 5 5 5 5 1 f f d d 4 4 4 b 
+b b 5 5 5 5 5 d f b 4 4 4 4 b . 
+b 5 5 5 b b b b 5 4 4 4 4 b . . 
+b 5 5 b b 5 5 b b 5 5 5 5 b . . 
+b b b b 5 5 5 5 5 5 5 5 5 5 b . 
+c b b 5 5 5 5 5 5 5 5 5 5 5 b . 
+c b 5 5 5 5 5 5 5 5 5 5 5 5 b . 
+c b 5 5 5 5 5 5 5 5 5 5 5 5 b . 
+b b c c 5 5 5 5 5 5 5 5 5 d b . 
+. . . . c 5 5 5 5 5 5 5 b b . . 
+. . . . . . c c c c c b b . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. . . . b b 5 d 1 f 5 5 d f . . 
+. . . . b 5 5 1 f f 5 d 4 c . . 
+. . . . b 5 5 d f b d d 4 4 . . 
+. b b b d 5 5 5 5 5 4 4 4 4 4 b 
+b d d d b b d 5 5 4 4 4 4 4 b . 
+b b d 5 5 5 b 5 5 5 5 5 5 b . . 
+c d c 5 5 5 5 d 5 5 5 5 5 5 b . 
+c b d c d 5 5 b 5 5 5 5 5 5 b . 
+. c d d c c b d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "bigLeftAnimation":
+            case "anim4":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . b 5 5 b b b b b . . . . . 
+. . . . b b 5 5 5 5 b b b . . . 
+. . . b 5 5 5 5 5 5 5 5 b b . . 
+. . b 5 5 5 5 5 5 5 5 5 5 b b . 
+. . b 5 5 5 5 5 5 5 5 5 5 d b b 
+. . f 4 d 5 f 1 d 5 b 5 5 d d b 
+. . c 4 4 5 f f 1 b 5 5 d d d b 
+. b 4 4 4 4 b f d 5 5 5 b d d b 
+b 4 4 4 4 4 4 5 b 5 5 d c d d b 
+. b 5 5 5 5 5 5 5 b c c d d d c 
+. b 5 5 5 5 5 5 5 d d d d d b c 
+. b 5 5 5 5 5 5 d d d d d d c . 
+. . b 5 5 5 5 d d d d d b c . . 
+. . . b b c c c c c c c c . . . 
+`, img`
+. . . . . . . . . . . . . . . . 
+. . . b 5 b . . . . . . . . . . 
+. . . . b 5 b b b b b b b . . . 
+. . . . b b 5 5 5 b b b b b b . 
+. . . b 5 5 5 5 5 5 5 5 5 b b b 
+. . b 5 5 5 5 5 5 5 5 5 5 b b b 
+. . b 5 5 5 5 5 5 5 5 5 5 5 b b 
+. . f 4 d 5 f 1 d 5 b 5 5 5 5 b 
+. . c 4 4 5 f f 1 b 5 5 5 5 5 b 
+b 4 4 4 4 4 b f d 5 5 5 5 5 5 b 
+. b 4 4 4 4 4 5 b 5 5 d c d 5 b 
+. b 5 5 5 5 5 5 5 b c c d d d c 
+. b 5 5 5 5 5 5 5 d d d d d b c 
+. b d 5 5 5 5 5 d d d d d d c . 
+. . b b 5 5 5 d d d d d b c . . 
+. . . b b c c c c c c c c . . . 
+`, img`
+. . . b 5 b . . . . . . . . . . 
+. . . . b 5 b . . . . . . . . . 
+. . . . . c b b b b . . . . . . 
+. . . . b b 5 5 b b b b b b b . 
+. . . b 5 5 5 5 5 5 5 5 5 5 b b 
+. . f d 5 5 f 1 d 5 5 5 5 5 5 b 
+. . c 4 d 5 f f 1 5 5 5 5 5 5 b 
+. . 4 4 d d b f d 5 5 5 5 5 5 5 
+b 4 4 4 4 4 5 5 5 d 5 5 5 5 5 b 
+. b 4 4 4 4 4 5 5 b 5 5 5 5 5 b 
+. . b 5 5 5 5 5 d 5 5 5 5 5 5 b 
+. b 5 5 5 5 5 5 b 5 5 d 5 5 d c 
+. b 5 5 5 5 5 5 5 5 5 5 5 d b c 
+. b d 5 5 5 5 5 d d d d d d c . 
+. . b b 5 5 5 d d d d d b c . . 
+. . . b b c c c c c c c c . . . 
+`, img`
+. . . b 5 b . . . . . . . . . . 
+. . . . b 5 b . . . . . . . . . 
+. . . . b b b b b b c c . . . . 
+. . . b 5 5 5 5 5 5 5 5 c . . . 
+. . c 4 d 5 f 1 d 5 5 5 c c . . 
+b 4 4 4 d d f f 1 5 5 5 5 c c . 
+. b 4 4 4 4 b f d 5 5 5 5 5 c . 
+. . b 4 4 4 4 5 5 5 5 5 5 5 c c 
+. . b 5 5 5 5 5 5 5 5 5 5 5 5 c 
+. b 5 5 5 5 5 5 5 5 5 5 5 5 5 c 
+. b 5 5 5 5 5 5 5 5 5 5 d d d c 
+. b 5 5 5 5 5 5 d d d d b d d c 
+. b 5 5 5 5 5 d d d 5 d d b d c 
+. b d 5 5 5 5 5 d d d d d d b . 
+. . b b 5 5 5 d d d d c d c b b 
+. . . b b c c c c c c c c . . . 
+`, img`
+. . . b 5 b . . . . . . . . . . 
+. . . . b 5 b . . . . . . . . . 
+. . . . b b b b b b b b b . . . 
+. . . b 5 5 5 5 5 5 5 5 b b b . 
+. . c 4 d 5 f 1 d 5 5 5 5 b b . 
+b 4 4 4 d d f f 1 5 5 5 5 5 b b 
+. b 4 4 4 4 b f d 5 5 5 5 5 b b 
+. . b 4 4 4 4 5 b b b b 5 5 5 b 
+. . b 5 5 5 5 b b 5 5 b b 5 5 b 
+. b 5 5 5 5 5 5 5 5 5 5 b b b b 
+. b 5 5 5 5 5 5 5 5 5 5 5 b b c 
+. b 5 5 5 5 5 5 5 5 5 5 5 5 b c 
+. b 5 5 5 5 5 5 5 5 5 5 5 5 b c 
+. b d 5 5 5 5 5 5 5 5 5 c c b b 
+. . b b 5 5 5 5 5 5 5 c . . . . 
+. . . b b c c c c c . . . . . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. . . . b b 5 d 1 f 5 5 d f . . 
+. . . . b 5 5 1 f f 5 d 4 c . . 
+. . . . b 5 5 d f b d d 4 4 . . 
+. b b b d 5 5 5 5 5 4 4 4 4 4 b 
+b d d d b b d 5 5 4 4 4 4 4 b . 
+b b d 5 5 5 b 5 5 5 5 5 5 b . . 
+c d c 5 5 5 5 d 5 5 5 5 5 5 b . 
+c b d c d 5 5 b 5 5 5 5 5 5 b . 
+. c d d c c b d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "fireRightAnimation":
+            case "anim5":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . 2 2 2 2 2 2 2 . . . . 
+. . . 2 2 2 b b b b 5 2 2 . . . 
+. . 2 2 b b 5 5 5 5 b b 2 2 . . 
+. 2 2 b 5 5 5 5 5 5 5 5 b 2 . . 
+2 2 b 5 5 5 5 5 5 5 5 5 5 2 2 . 
+2 b d 5 5 5 5 5 5 5 5 5 5 b 2 . 
+2 d d 5 5 b 5 d 1 f 5 d 4 f 2 . 
+2 d d d 5 5 b 1 f f 5 4 4 c . 2 
+2 d d b 5 5 5 d f b 4 4 4 4 b 2 
+2 d d c d 5 5 b 5 4 4 4 4 4 4 2 
+2 d d d c c b 5 5 5 5 5 5 5 b 2 
+2 b d d d d d 5 5 5 5 5 5 5 b 2 
+2 2 d d d d d d 5 5 5 5 5 5 2 2 
+. 2 2 b d d d d d 5 5 5 5 2 2 . 
+. . 2 2 2 c c c c c c b b 2 . . 
+`, img`
+. . . . . . . . . 2 2 2 . . . . 
+. . 2 2 2 2 2 2 2 2 b 5 2 2 . . 
+. . 2 b b b b b b b 5 b 2 2 . . 
+. 2 2 b b b b 5 5 5 b b 2 2 2 . 
+2 2 b 5 5 5 5 5 5 5 5 5 b 2 2 . 
+2 b b 5 5 5 5 5 5 5 5 5 5 b 2 . 
+2 b 5 5 5 5 5 5 5 5 5 5 5 b 2 2 
+2 5 5 5 5 b 5 d 1 f 5 d 4 f 2 2 
+2 5 5 5 5 5 b 1 f f 5 4 4 c 2 2 
+2 5 5 5 5 5 5 d f b 4 4 4 4 4 2 
+2 5 d c d 5 5 b 5 4 4 4 4 4 b 2 
+2 d d d c c b 5 5 5 5 5 5 5 b 2 
+2 b d d d d d 5 5 5 5 5 5 5 b 2 
+2 2 d d d d d d 5 5 5 5 5 d 2 2 
+. 2 2 b d d d d d 5 5 5 b 2 2 . 
+. . 2 2 c c c c c c c b 2 2 . . 
+`, img`
+. . . . . . . . 2 2 2 2 b . . . 
+. . . . . 2 2 2 2 2 5 2 . . . . 
+. 2 2 2 2 2 b b b b c 2 2 . . . 
+2 2 b b b b b b 5 5 b b 2 2 . . 
+2 b 5 5 5 5 5 5 5 5 5 5 b 2 . . 
+b 5 5 5 5 5 5 d 1 f 5 5 d 2 . . 
+b 5 5 5 5 5 5 1 f f 5 d 4 c 2 . 
+5 5 5 5 5 5 5 d f b d d 4 4 2 . 
+b 5 5 5 5 5 d 5 5 5 4 4 4 4 2 b 
+b 5 5 5 5 5 b 5 5 4 4 4 4 4 2 . 
+b 5 5 5 5 5 5 d 5 5 5 5 5 b 2 2 
+c d 5 5 d 5 5 b 5 5 5 5 5 5 2 2 
+c b d 5 5 5 5 5 5 5 5 5 5 5 2 . 
+2 c d d d d d d 5 5 5 5 5 d 2 . 
+2 2 c b d d d d d 5 5 5 b 2 2 . 
+. . 2 c c c c c c c c b 2 2 . . 
+`, img`
+. . . . . . . . . 2 2 2 2 . . . 
+. . . . . 2 2 2 2 2 5 b 2 . . . 
+. . 2 2 2 2 b b b b b b 2 2 . . 
+. 2 2 c 5 5 5 5 5 5 5 5 b 2 2 . 
+. 2 c c 5 5 5 d 1 f 5 d 4 c 2 2 
+2 2 c 5 5 5 5 1 f f d d 4 4 4 2 
+2 c 5 5 5 5 5 d f b 4 4 4 4 b 2 
+2 c 5 5 5 5 5 5 5 4 4 4 4 b . 2 
+c 5 5 5 5 5 5 5 5 5 5 5 5 b . 2 
+c 5 5 5 5 5 5 5 5 5 5 5 5 5 b 2 
+c d d d 5 5 5 5 5 5 5 5 5 5 b 2 
+c d d b d d d d 5 5 5 5 5 5 2 2 
+c d b d d 5 d d d 5 5 5 5 5 2 . 
+2 b d d d d d d 5 5 5 5 5 d 2 . 
+2 2 c d c d d d d 5 5 5 b 2 2 . 
+. 2 2 2 c c c c c c c b b 2 . . 
+`, img`
+. . . . . . . . 2 2 2 2 b . . . 
+. . . . . . . 2 2 b 5 2 2 . . . 
+. . 2 2 2 2 2 2 b b b b 2 . . . 
+. 2 2 b 5 5 5 5 5 5 5 5 2 2 . . 
+2 2 b 5 5 5 5 d 1 f 5 d 4 2 2 . 
+2 b 5 5 5 5 5 1 f f d d 4 4 2 2 
+b b 5 5 5 5 5 d f b 4 4 4 4 b 2 
+b 5 5 5 b b b b 5 4 4 4 4 b 2 . 
+b 5 5 b b 5 5 b b 5 5 5 5 b 2 2 
+b b b b 5 5 5 5 5 5 5 5 5 5 b 2 
+c b b 5 5 5 5 5 5 5 5 5 5 5 b 2 
+c b 5 5 5 5 5 5 5 5 5 5 5 5 2 2 
+c b 5 5 5 5 5 5 5 5 5 5 5 5 2 . 
+2 b c c 5 5 5 5 5 5 5 5 5 2 2 . 
+2 2 2 . c 5 5 5 5 5 5 5 b 2 . . 
+. . 2 2 2 2 c c c c c b 2 2 . . 
+`, img`
+. . . . . . . . . . b 5 b . . . 
+. . . . . . . . . b 5 b . . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. . . . b b 5 d 1 f 5 5 d f . . 
+. . . . b 5 5 1 f f 5 d 4 c . . 
+. . . . b 5 5 d f b d d 4 4 . . 
+. b b b d 5 5 5 5 5 4 4 4 4 4 b 
+b d d d b b d 5 5 4 4 4 4 4 b . 
+b b d 5 5 5 b 5 5 5 5 5 5 b . . 
+c d c 5 5 5 5 d 5 5 5 5 5 5 b . 
+c b d c d 5 5 b 5 5 5 5 5 5 b . 
+. c d d c c b d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "fireLeftAnimation":
+            case "anim6":return [img`
+. . . . . . . . . . . . . . . . 
+. . 2 2 2 2 2 2 2 2 2 . . . . . 
+. . 2 b 5 5 b b b b 2 2 2 . . . 
+. . 2 2 b b 5 5 5 5 b b 2 2 . . 
+. 2 2 b 5 5 5 5 5 5 5 5 b 2 2 . 
+. 2 b 5 5 5 5 5 5 5 5 5 5 b 2 2 
+. 2 b 5 5 5 5 5 5 5 5 5 5 d b 2 
+2 2 f 4 d 5 f 1 d 5 b 5 5 d d 2 
+2 . c 4 4 5 f f 1 b 5 5 d d d 2 
+2 b 4 4 4 4 b f d 5 5 5 b d d 2 
+2 4 4 4 4 4 4 5 b 5 5 d c d d 2 
+2 b 5 5 5 5 5 5 5 b c c d d d 2 
+2 b 5 5 5 5 5 5 5 d d d d d b 2 
+2 2 5 5 5 5 5 5 d d d d d d c 2 
+. 2 2 5 5 5 5 d d d d d b c 2 2 
+. . 2 b b c c c c c c c c 2 2 2 
+`, img`
+. . . 2 2 2 2 . . . . . . . . . 
+. . 2 2 5 b 2 2 2 2 2 2 2 . . . 
+. . . 2 b 5 b b b b b b b 2 2 2 
+. . 2 . b b 5 5 5 b b b b b b 2 
+. 2 2 b 5 5 5 5 5 5 5 5 5 b b 2 
+. 2 b 5 5 5 5 5 5 5 5 5 5 b b 2 
+. 2 b 5 5 5 5 5 5 5 5 5 5 5 b 2 
+2 2 f 4 d 5 f 1 d 5 b 5 5 5 5 2 
+2 . c 4 4 5 f f 1 b 5 5 5 5 5 2 
+2 4 4 4 4 4 b f d 5 5 5 5 5 5 2 
+2 b 4 4 4 4 4 5 b 5 5 d c d 5 2 
+2 b 5 5 5 5 5 5 5 b c c d d d 2 
+2 b 5 5 5 5 5 5 5 d d d d d b 2 
+2 b d 5 5 5 5 5 d d d d d d c 2 
+2 2 b b 5 5 5 d d d d d b c 2 2 
+. 2 2 b b c c c c c c c c 2 2 . 
+`, img`
+. . 2 b 2 2 2 2 . . . . . . . . 
+. . 2 2 b 5 b 2 2 2 2 2 . . . . 
+. . . 2 2 c b b b b . 2 2 2 2 . 
+. . . 2 b b 5 5 b b b b b b 2 2 
+. 2 2 b 5 5 5 5 5 5 5 5 5 5 b 2 
+. 2 f d 5 5 f 1 d 5 5 5 5 5 5 2 
+. 2 c 4 d 5 f f 1 5 5 5 5 5 5 2 
+2 . 4 4 d d b f d 5 5 5 5 5 5 2 
+b 4 4 4 4 4 5 5 5 d 5 5 5 5 5 2 
+2 b 4 4 4 4 4 5 5 b 5 5 5 5 5 2 
+2 2 b 5 5 5 5 5 d 5 5 5 5 5 5 2 
+2 b 5 5 5 5 5 5 b 5 5 d 5 5 d 2 
+2 b 5 5 5 5 5 5 5 5 5 5 5 d b 2 
+2 b d 5 5 5 5 5 d d d d d d c 2 
+2 2 b b 5 5 5 d d d d d b c 2 2 
+. 2 2 b b c c c c c c c c 2 . . 
+`, img`
+. . 2 b 5 b 2 . . . . . . . . . 
+. . 2 2 b 5 2 2 2 2 2 . . . . . 
+. . . 2 b b b b b b c 2 2 2 . . 
+. 2 2 2 5 5 5 5 5 5 5 5 c 2 . . 
+2 2 c 4 d 5 f 1 d 5 5 5 c c 2 . 
+2 4 4 4 d d f f 1 5 5 5 5 c 2 2 
+2 b 4 4 4 4 b f d 5 5 5 5 5 c 2 
+. 2 b 4 4 4 4 5 5 5 5 5 5 5 c 2 
+. . 2 5 5 5 5 5 5 5 5 5 5 5 5 c 
+2 2 2 5 5 5 5 5 5 5 5 5 5 5 5 c 
+2 b 5 5 5 5 5 5 5 5 5 5 d d d 2 
+2 b 5 5 5 5 5 5 d d d d b d d 2 
+2 b 5 5 5 5 5 d d d 5 d d b d 2 
+2 b d 5 5 5 5 5 d d d d d d b 2 
+2 2 b b 5 5 5 d d d d c d c 2 2 
+. 2 2 b b c c c c c c c c 2 2 . 
+`, img`
+. . 2 b 5 b 2 2 2 . . . . . . . 
+. . 2 2 b 5 b 2 2 2 2 2 2 2 . . 
+. . . 2 b b b b b b b b b 2 2 . 
+. . 2 2 5 5 5 5 5 5 5 5 b b 2 . 
+2 2 2 4 d 5 f 1 d 5 5 5 5 b 2 2 
+2 4 4 4 d d f f 1 5 5 5 5 5 b 2 
+2 b 4 4 4 4 b f d 5 5 5 5 5 b 2 
+2 2 b 4 4 4 4 5 b b b b 5 5 5 2 
+2 2 b 5 5 5 5 b b 5 5 b b 5 5 2 
+2 2 5 5 5 5 5 5 5 5 5 5 b b b 2 
+2 b 5 5 5 5 5 5 5 5 5 5 5 b b 2 
+2 b 5 5 5 5 5 5 5 5 5 5 5 5 b 2 
+2 b 5 5 5 5 5 5 5 5 5 5 5 5 b 2 
+2 2 d 5 5 5 5 5 5 5 5 5 c c b 2 
+. 2 b b 5 5 5 5 5 5 5 c 2 2 2 2 
+. 2 2 b b c c c c c 2 2 2 2 2 . 
 `, img`
 . . . . . . . . . . b 5 b . . . 
 . . . . . . . . . b 5 b . . . . 
