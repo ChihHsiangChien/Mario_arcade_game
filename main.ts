@@ -13,7 +13,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 // 遊戲初始化
 function 初始化遊戲 () {
-    火球冷卻時間 = 1000
+    火球冷卻時間 = 500
     小鴨方向 = "right"
     小鴨狀態 = "small"
     正常速度 = 150
@@ -28,8 +28,9 @@ function 初始化遊戲 () {
     tiles.placeOnTile(小鴨, tiles.getTileLocation(0, 12))
     scene.cameraFollowSprite(小鴨)
     小鴨.ay = 500
-    產生敵人(tiles.getTileLocation(5, 12))
-    產生敵人(tiles.getTileLocation(10, 12))
+    for (let index = 0; index < 15; index++) {
+        產生敵人(tiles.getTileLocation(randint(5, 15), 8))
+    }
 }
 // 產生火球花
 function 產生火球花 (tile: tiles.Location) {
@@ -60,12 +61,21 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, lo
         return
     }
     控制權 = "系統"
-    行為狀態 = "滑落旗桿"
+    行為狀態 = "滑落旗竿"
     controller.moveSprite(小鴨, 0, 0)
     tiles.placeOnTile(小鴨, location)
     小鴨.vx = 0
     小鴨.vy = 50
+    
 })
+game.onUpdate(function() {
+    if (行為狀態 == "滑落旗竿" && 小鴨.isHittingTile(CollisionDirection.Bottom)){
+        game.gameOver(true)
+
+    }
+
+})
+
 // 產生敵人
 function 產生敵人 (tile: tiles.Location) {
     敵人 = sprites.create(img`
@@ -87,7 +97,8 @@ function 產生敵人 (tile: tiles.Location) {
         `, SpriteKind.Enemy)
     tiles.placeOnTile(敵人, tile)
     敵人.ay = 500
-    敵人.vx = 40
+    
+    敵人.vx = 40 * (randint(0, 1) * 2 - 1)
 }
 // 按A發射火球
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -192,7 +203,7 @@ function 播放移動動畫 () {
             animation.runImageAnimation(
             小鴨,
             assets.animation`smallLeftAnimation`,
-            200,
+            50,
             true
             )
         } else if (小鴨狀態 == "big") {
@@ -202,39 +213,37 @@ function 播放移動動畫 () {
             200,
             true
             )
-        }
-        else{
+        } else {
             animation.runImageAnimation(
-                小鴨,
-                assets.animation`fireLeftAnimation`,
-                200,
-                true
+            小鴨,
+            assets.animation`fireLeftAnimation`,
+            200,
+            true
             )
-
         }
     } else {
         if (小鴨狀態 == "small") {
             animation.runImageAnimation(
             小鴨,
             assets.animation`smallRightAnimation`,
-            200,
+            50,
             true
             )
-        } else if (小鴨狀態 == "big"){
+        } else if (小鴨狀態 == "big") {
             animation.runImageAnimation(
             小鴨,
             assets.animation`bigRightAnimation`,
             200,
             true
             )
-        } else  {
-        animation.runImageAnimation(
+        } else {
+            animation.runImageAnimation(
             小鴨,
             assets.animation`fireRightAnimation`,
             200,
             true
-        )
-    }
+            )
+        }
     }
 }
 // 產生香菇
@@ -260,10 +269,10 @@ function 產生香菇 (tile: tiles.Location) {
     tiles.placeOnTile(mushroom, tile)
     mushroom.y -= 20
 mushroom.ay = 600
-    if (小鴨.vx >= 0) {
-        mushroom.vx = 100
-    } else {
+    if (小鴨方向 == "left") {
         mushroom.vx = -100
+    } else {
+        mushroom.vx = 100
     }
 }
 // 吃到香菇
@@ -297,8 +306,9 @@ function 變小鴨 () {
     小鴨.setImage(duckImageSmallRight)
     小鴨.y = 小鴨.y + 8
 }
+// 玩家碰到敵人
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player2, enemy) {
-    if (player2.vy > 0) {
+    if (enemy.y - player2.y >= 5) {
         enemy.destroy(effects.spray, 200)
         music.baDing.play()
         info.changeScoreBy(1)
@@ -428,19 +438,22 @@ game.onUpdate(function () {
 })
 // 撞寶箱產生道具
 game.onUpdate(function () {
+    // 小鴨往上跳
     if (小鴨.vy < 0) {
-        tile = tiles.getTileLocation(小鴨.tilemapLocation().column, 小鴨.tilemapLocation().row - 1)
-        if (tiles.tileAtLocationEquals(tile, sprites.dungeon.chestClosed)) {
-            小鴨.vy = -50
-            tiles.setTileAt(tile, assets.tile`transparency16`)
-            music.baDing.play()
-            產生香菇(tile)
-        } else if (tiles.tileAtLocationEquals(tile, sprites.dungeon.chestOpen)) {
-            小鴨.vy = -50
-            tiles.setTileAt(tile, sprites.dungeon.floorLight2)
-            tiles.setWallAt(tile, true)
-            music.baDing.play()
-            產生火球花(tile)
+        for (let index2 = -1; index2 <= 1; index2++) {
+            tile = tiles.getTileLocation(小鴨.tilemapLocation().column + index2, 小鴨.tilemapLocation().row - 1)
+            if (tiles.tileAtLocationEquals(tile, sprites.dungeon.collectibleRedCrystal)) {
+                小鴨.vy = -50
+                tiles.setTileAt(tile, assets.tile`transparency16`)
+                music.baDing.play()
+                產生香菇(tile)
+            } else if (tiles.tileAtLocationEquals(tile, sprites.dungeon.collectibleBlueCrystal)) {
+                小鴨.vy = -50
+                tiles.setTileAt(tile, sprites.dungeon.floorLight2)
+                tiles.setWallAt(tile, true)
+                music.baDing.play()
+                產生火球花(tile)
+            }
         }
     }
 })
